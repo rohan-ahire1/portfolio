@@ -15,13 +15,16 @@ function StatCell({
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-15%" });
-  const count = useMotionValue(0);
+  // Start at the final value so SSR, bots, and no-JS readers see real
+  // numbers; restart from zero for the count-up once scrolled into view.
+  const count = useMotionValue(stat.value);
   const rounded = useTransform(count, (v) =>
     stat.decimals ? v.toFixed(stat.decimals) : Math.round(v).toLocaleString("en-IN"),
   );
 
   useEffect(() => {
     if (!inView) return;
+    count.set(0);
     const controls = animate(count, stat.value, {
       duration: 1.4,
       delay: index * 0.12,

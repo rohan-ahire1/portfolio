@@ -1,7 +1,7 @@
 "use client";
 
 import { Magnetic } from "@/components/Magnetic";
-import { site } from "@/lib/content";
+import { contactHref, site } from "@/lib/content";
 import { motion } from "framer-motion";
 
 const colophon = [
@@ -11,7 +11,7 @@ const colophon = [
   },
   {
     label: "STACK",
-    lines: ["Next.js 15 · Tailwind 4 · Framer Motion", "Deployed from a laptop in India"],
+    lines: ["Next.js 16 · Tailwind 4 · Framer Motion", "Deployed from a laptop in India"],
   },
   {
     label: "EDITION",
@@ -62,7 +62,7 @@ export function Contact() {
         >
           <Magnetic className="block sm:inline-block">
             <a
-              href={`mailto:${site.email}`}
+              href={contactHref}
               data-cursor="WRITE"
               className="display text-base sm:text-xl md:text-3xl border-4 border-ink bg-ink text-paper px-5 py-4 sm:px-8 sm:py-5 hover:bg-signal hover:border-signal transition-colors duration-300 inline-flex w-full sm:w-auto justify-center items-center gap-3 sm:gap-4 break-all"
             >
@@ -82,29 +82,6 @@ export function Contact() {
             </a>
           </Magnetic>
         </motion.div>
-      </div>
-
-      {/* Media kit */}
-      <div className="border-t-2 border-ink bg-paper">
-        <div className="mx-auto max-w-[1400px] px-4 md:px-8 py-8 md:py-10 flex flex-wrap items-center justify-between gap-6">
-          <div>
-            <p className="mono text-[10px] text-signal mb-2">MEDIA KIT</p>
-            <p className="text-base md:text-lg text-ink-soft max-w-md">
-              The one-page version — who I am, what I&apos;ve shipped, where to
-              reach me.
-            </p>
-          </div>
-          <Magnetic>
-            <a
-              href="/resume.pdf"
-              download
-              data-cursor="SAVE ↓"
-              className="display text-sm md:text-base border-2 border-ink px-5 py-3 invert-hover inline-block"
-            >
-              RESUME (PDF) ↓
-            </a>
-          </Magnetic>
-        </div>
       </div>
 
       {/* Colophon */}

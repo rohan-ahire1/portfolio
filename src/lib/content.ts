@@ -20,13 +20,16 @@ export const site = {
   handle: "ROHAN",
   role: "Builder · Systems · Product",
   location: "India · Remote",
-  email: "rohan@example.com",
+  email: "rohanahire1607@gmail.com",
   github: "https://github.com/rohan-ahire1",
   linkedin: "https://linkedin.com/in/rohanahire",
   tagline: "I build trading systems, games, and AI tools — end to end, solo.",
   bio: "I'm an engineer who takes ideas all the way from first commit to something people can use. Right now that means a scanner for Indian stock markets, a geography game with daily challenges, and a chess coach that reads your games. Small tools, done properly.",
   availability: "Open to interesting work",
 };
+
+export const contactHref =
+  `mailto:${site.email}?subject=${encodeURIComponent("Project inquiry — via rohanahire.com")}`;
 
 export const marquee = [
   "NEXT.JS",
@@ -55,8 +58,8 @@ export const projects: Project[] = [
     stack: ["Vite", "React", "TypeScript", "Supabase", "Tailwind"],
     year: "2025–26",
     status: "Active",
-    github: "https://github.com/rohan-ahire1/flaggo",
-    demo: "http://localhost:5173",
+    live: "https://flaggo.rohanahire.com",
+    demo: "https://flaggo.rohanahire.com",
     accent: "#E10600",
   },
   {
@@ -70,8 +73,6 @@ export const projects: Project[] = [
     stack: ["Next.js", "Stockfish", "chess.js", "OpenRouter"],
     year: "2026",
     status: "Shipped",
-    github: "https://github.com/rohan-ahire1/chess-coach",
-    demo: "http://localhost:3001",
     accent: "#1A4D2E",
   },
   {
@@ -85,7 +86,6 @@ export const projects: Project[] = [
     stack: ["Python", "Polars", "DuckDB", "FastAPI", "React"],
     year: "2026",
     status: "Active",
-    github: "https://github.com/rohan-ahire1/Multibagger",
     accent: "#0B3D91",
   },
   {

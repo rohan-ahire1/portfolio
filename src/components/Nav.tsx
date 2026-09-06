@@ -1,6 +1,6 @@
 "use client";
 
-import { site } from "@/lib/content";
+import { contactHref, site } from "@/lib/content";
 import { useActiveSection } from "@/lib/useActiveSection";
 import { AnimatePresence, motion, useMotionValueEvent, useScroll } from "framer-motion";
 import { useEffect, useState } from "react";
@@ -64,7 +64,7 @@ export function Nav() {
 
         <div className="flex items-center gap-3">
           <a
-            href={`mailto:${site.email}`}
+            href={contactHref}
             data-cursor="WRITE"
             className="mono hidden sm:inline-block text-[10px] md:text-[11px] border border-ink px-3 py-1.5 invert-hover"
           >
@@ -105,7 +105,7 @@ export function Nav() {
               ))}
             </nav>
             <a
-              href={`mailto:${site.email}`}
+              href={contactHref}
               onClick={() => setOpen(false)}
               className="mono text-[11px] px-6 py-6 text-muted"
             >
