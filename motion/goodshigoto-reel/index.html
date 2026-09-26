@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Good Shigoto Reel</title>
+    <style>
+      @font-face {
+        font-family: "Archivo Black";
+        src: url(fonts/ArchivoBlack.ttf) format("truetype");
+      }
+      @font-face {
+        font-family: "Space Mono";
+        src: url(fonts/SpaceMono-Regular.ttf) format("truetype");
+      }
+      @font-face {
+        font-family: "Dela Gothic One";
+        src: url(fonts/DelaGothicOne-subset.ttf) format("truetype");
+      }
+      html,
+      body {
+        margin: 0;
+        height: 100%;
+        background: #0c0c0c;
+        overflow: hidden;
+      }
+      canvas {
+        display: block;
+        width: 100vw;
+        height: 100vh;
+        cursor: pointer;
+      }
+      body.export canvas {
+        width: auto;
+        height: auto;
+        cursor: default;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="c"></canvas>
+    <script src="reel.js"></script>
+    <script>
+      // Live:   index.html            (fills the window, click to replay)
+      // Export: index.html?export&w=1920&h=1080   (driven by render.mjs)
+      (async () => {
+        const q = new URLSearchParams(location.search);
+        const cv = document.getElementById("c");
+        const ctx = cv.getContext("2d");
+        await REEL.ready();
+
+        if (q.has("export")) {
+          document.body.classList.add("export");
+          cv.width = +q.get("w") || 1920;
+          cv.height = +q.get("h") || 1080;
+          REEL.setup(cv.width, cv.height);
+          window.renderAt = (t, samples) => REEL.draw(ctx, t, samples);
+          window.reelReady = true;
+          return;
+        }
+
+        const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+        let start = performance.now();
+        const size = () => {
+          const dpr = Math.min(2, devicePixelRatio || 1);
+          cv.width = Math.round(innerWidth * dpr);
+          cv.height = Math.round(innerHeight * dpr);
+          REEL.setup(cv.width, cv.height);
+        };
+        size();
+        addEventListener("resize", size);
+        cv.addEventListener("click", () => (start = performance.now()));
+        const tick = (now) => {
+          const t = reduce ? REEL.DUR : (now - start) / 1000;
+          REEL.draw(ctx, t);
+          requestAnimationFrame(tick);
+        };
+        requestAnimationFrame(tick);
+      })();
+    </script>
+  </body>
+</html>
