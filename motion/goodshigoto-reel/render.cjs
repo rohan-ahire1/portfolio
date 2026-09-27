@@ -28,7 +28,7 @@ const STILLS = arg("stills");
 const OUTDIR = arg("outdir", "stills");
 
 const root = __dirname;
-const types = { ".html": "text/html", ".js": "text/javascript", ".ttf": "font/ttf" };
+const types = { ".html": "text/html", ".js": "text/javascript", ".ttf": "font/ttf", ".png": "image/png" };
 const server = http.createServer((req, res) => {
   const p = path.join(root, decodeURIComponent(new URL(req.url, "http://x").pathname));
   if (!p.startsWith(root) || !fs.existsSync(p) || fs.statSync(p).isDirectory()) {

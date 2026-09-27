@@ -1,20 +1,26 @@
-# GOOD SHIGOTO — landing reel
+# GoodShigoto — landing reel
 
-5-second motion piece for goodshigoto.com. One deterministic `draw(t)` in `reel.js`
-drives both the live canvas (`index.html`) and the rendered masters.
+5-second motion piece for goodshigoto.com, built on the site's own brand:
+paper `#f5f2eb`, ink `#141311`, red `#c8321f`, Schibsted Grotesk 800
+(-0.045em wordmark, -0.035em headings), IBM Plex Mono, red i-dots and full
+stops, the red hand-drawn underline, and the ensō / mountain / sun mark
+(`assets/mark.png`, from `goodshigoto.com/brand/mark.png`).
+
+One deterministic `draw(t)` in `reel.js` drives both the live canvas
+(`index.html`) and the rendered masters.
 
 | Beat | Time | What happens |
 | --- | --- | --- |
-| Impulse | 0.00 | Red dot springs in, squashes, shoots into a line |
-| Kinetic type | 0.58 | Line splits into a band; slot-roll MOTION → TYPE → TIMING → RHYTHM → WORK with tategaki labels |
+| Impulse | 0.00 | The red sun springs in, squashes, shoots into a line |
+| Type | 0.58 | Line splits into an ink band; slot-roll Websites. → Redesigned. → Software. → Automations. → Properly. (underlined) |
 | Systems | 1.80 | Band slams shut, the line fractures into a 576-dot grid, ripple |
-| Form | 2.55 | Dots fly into halftone 仕事, resolve to solid |
-| Transition | 3.18 | Twisting zoom through a stroke into pure red |
-| Lockup | 3.52 | Layered wipes, GOOD SHIGOTO, the opening dot lands as the full stop |
+| Form | 2.55 | Dots fly into a halftone of the mark, resolve to solid |
+| Transition | 3.18 | Twisting zoom through the sun into pure red |
+| Lockup | 3.52 | Layered wipes; the ensō paints itself, the mountain sweeps in, the sun rises; GoodShıgoto rises and its red i-dot drops into place; "We redesign websites. Properly." |
 
 ## Outputs (`public/showreel/`)
 
-- `goodshigoto-reel.mp4` — 1920×1080, 60 fps, H.264, 8-sample motion blur
+- `goodshigoto-reel.mp4` — 1920×1080, 60 fps, H.264, 16-sample motion blur
 - `goodshigoto-reel.webm` — same, VP9
 - `goodshigoto-reel-vertical.mp4` — 1080×1920 re-layout for phones
 - `goodshigoto-reel-poster.jpg` — final frame
@@ -34,8 +40,8 @@ No `loop`: it ends on a settled lockup, so the last frame doubles as a hero.
 Needs Playwright and an ffmpeg with libx264/libvpx.
 
 ```bash
-NODE_PATH=$(npm root -g) node render.cjs --out ../../public/showreel/goodshigoto-reel.mp4
-NODE_PATH=$(npm root -g) node render.cjs --w 1080 --h 1920 --out vertical.mp4
+NODE_PATH=$(npm root -g) node render.cjs --samples 16 --out ../../public/showreel/goodshigoto-reel.mp4
+NODE_PATH=$(npm root -g) node render.cjs --samples 16 --w 1080 --h 1920 --out vertical.mp4
 NODE_PATH=$(npm root -g) node render.cjs --samples 1 --stills 1.2,2.9,4.9 --outdir stills
 ```
 
