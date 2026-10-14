@@ -1,8 +1,8 @@
 import type { MetadataRoute } from "next";
-import { projects } from "@/lib/content";
 
 export const dynamic = "force-static";
 
+// One page: section anchors (#work etc.) aren't separate URLs to search engines.
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
@@ -11,11 +11,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly",
       priority: 1,
     },
-    ...projects.map((p) => ({
-      url: `https://rohanahire.com/#${p.id}` as const,
-      lastModified: new Date(),
-      changeFrequency: "monthly" as const,
-      priority: 0.6,
-    })),
   ];
 }
